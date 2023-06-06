@@ -31,8 +31,14 @@ import { Input } from "./Input";
 import { OrthoCamera } from "./Camera";
 import { Vector3 } from "./Vector3";
 
+type InputOptions = {
+	wheel?: {
+		zoomingOffset?: number;
+	}
+}
+
 export class CameraController {
-	constructor (public canvas: HTMLElement, public camera: OrthoCamera) {
+	constructor (public canvas: HTMLElement, public camera: OrthoCamera, inputOptions?: InputOptions) {
 		let cameraX = 0, cameraY = 0, cameraZoom = 0;
 		let mouseX = 0, mouseY = 0;
 		let lastX = 0, lastY = 0;
@@ -57,7 +63,7 @@ export class CameraController {
 				lastY = y;
 			},
 			wheel: (delta: number) => {
-				let zoomAmount = delta / 200 * camera.zoom;
+				let zoomAmount = delta / (inputOptions?.wheel?.zoomingOffset ?? 600) * camera.zoom;
 				let newZoom = camera.zoom + zoomAmount;
 				if (newZoom > 0) {
 					let x = 0, y = 0;
