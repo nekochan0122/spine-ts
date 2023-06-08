@@ -1,5 +1,5 @@
 {
-  "name": "@esotericsoftware/spine-webgl",
+  "name": "@nekochan0122/spine-webgl",
   "version": "4.1.31",
   "description": "The official Spine Runtimes for the web.",
   "main": "dist/index.js",
